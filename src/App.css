@@ -1,4 +1,27 @@
 .App {
-  text-align: center;
   font-family: Helvetica, Tahoma, Arial, STXihei, “华文细黑”, “Microsoft YaHei”, “微软雅黑”, sans-serif;
 }
+
+.headerTitle {
+  font-size: 20px
+}
+
+.mainContent{
+  height: 1000px
+}
+
+.dashBoard{
+  position: relative;
+  top: 20px;
+  height: 300px;
+  background-image: "./images/dashBoard.jpg"
+}
+
+.choose{
+  position: relative;
+  top: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+

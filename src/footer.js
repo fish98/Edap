@@ -14,10 +14,10 @@ class Footer extends React.Component{
         height : '15px',
         display: isShow
     }
-
+    
     render(){
         return(
-        <div id="footer">
+        <div className="footer" style={{"text-align": "center"}}>
             <div style={this.blankStyle}></div>
             <hr width="100%" color='#987cb9'/>
             <div style={this.blankStyle}></div>
