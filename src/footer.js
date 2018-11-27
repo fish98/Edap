@@ -17,7 +17,7 @@ class Footer extends React.Component{
     
     render(){
         return(
-        <div className="footer" style={{"text-align": "center"}}>
+        <div className="footer" style={{"textAlign": "center"}}>
             <div style={this.blankStyle}></div>
             <hr width="100%" color='#987cb9'/>
             <div style={this.blankStyle}></div>
