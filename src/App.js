@@ -7,28 +7,33 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+
 // import Checkbox from '@material-ui/core/Checkbox'
 
 import './App.css'
+import DetailDialog from './detailDialog'
 import Footer from './footer'
 import Header from './header'
 
 // const fetch = require('node-fetch')
 
 const List = [
-  {"Id": "ttfish", 
+  {"Id": "ttfish",
+  "tag": 1, 
   "Package": "Computer", 
   "Place": "Bird",
   "deadLine": 3,
   "Reward": 50
 }, 
   {"Id": "Flower", 
+  "tag": 2, 
   "Package": "Game", 
   "Place": "Bird",
   "deadLine": 7,
   "Reward": 500
 }, 
   {"Id": "Lee", 
+  "tag": 3, 
   "Package": "Perfume", 
   "Place": "Tcat",
   "deadLine": 6,
@@ -38,6 +43,7 @@ const List = [
 class App extends Component {
 
   state = {
+    detailOpen: false
     // checked: []
   }
 
@@ -58,8 +64,16 @@ class App extends Component {
 
   // }
 
-  showDetail = () => {
+  handleClose = () => {
+    this.setState({
+      detailOpen: false
+    })
+  }
 
+  showDetail = () => {
+    this.setState({
+      detailOpen: true
+    })
   }
 
   render() {
@@ -118,6 +132,8 @@ class App extends Component {
             </Paper>
           </div>}
         </div>
+
+        <DetailDialog open={this.state.detailOpen} onClose={this.handleClose} scroll="paper" />
 
         <div style={{"height": "100px"}}></div>
 
