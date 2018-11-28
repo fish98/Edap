@@ -7,13 +7,13 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import Checkbox from '@material-ui/core/Checkbox'
+// import Checkbox from '@material-ui/core/Checkbox'
 
 import './App.css'
 import Footer from './footer'
 import Header from './header'
 
-const fetch = require('node-fetch')
+// const fetch = require('node-fetch')
 
 const List = [
   {"Id": "ttfish", 
@@ -35,52 +35,33 @@ const List = [
   "Reward": 0
 }]
 
-const selected = []
+class App extends Component {
 
-const onSelect = (index) => {
-  if(selected.indexOf(index)){
-    selected.splice(selected.indexOf(index))
-  } else {  
-    selected.push(index)
+  state = {
+    // checked: []
   }
 
-}
+  // handleToggle = value => () => {
+  //   const { checked } = this.state
+  //   const currentIndex = checked.indexOf(value)
+  //   const newChecked = [...checked]
 
-const Request = 
-    <div className="requests">
-        <Paper className="requestPaper">
-          <Table className="requestTable">
-            <TableHead>
-              <TableRow>
-                <TableCell>QSC ID</TableCell>
-                <TableCell>Package Type</TableCell>
-                <TableCell>Place</TableCell>
-                <TableCell>Deadline</TableCell>
-                <TableCell>Reward</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {List.map((item, index) => {
-                return (
-                  <TableRow key={index}>
-                    <Checkbox
-                      checked={selected.indexOf(index) !== -1}
-                      onChange={onSelect(index)}
-                    />
-                    <TableCell>{item.Id}</TableCell>
-                    <TableCell>{item.Package}</TableCell>
-                    <TableCell>{item.Place}</TableCell>
-                    <TableCell numeric>{item.deadLine}</TableCell>
-                    <TableCell numeric>{item.Reward}</TableCell>
-                  </TableRow>
-                )
-              })}
-            </TableBody>
-          </Table>
-        </Paper>
-    </div>
+  //   if (currentIndex === -1) {
+  //     newChecked.push(value);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1)
+  //   }
 
-class App extends Component {
+  //   this.setState({
+  //     checked: newChecked
+  //   })
+
+  // }
+
+  showDetail = () => {
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -100,9 +81,45 @@ class App extends Component {
             </Button>
           </div>
 
-          {Request}
-
+          {<div className="requests">
+            <Paper className="requestPaper">
+              <Table className="requestTable">
+                <TableHead>
+                  <TableRow>
+                    {/* <TableCell>Assistance</TableCell> */}
+                    <TableCell>QSC ID</TableCell>
+                    <TableCell>Package Type</TableCell>
+                    <TableCell>Place</TableCell>
+                    {/* <TableCell>Deadline</TableCell>
+                    <TableCell>Reward</TableCell> */}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {List.map((item,index) => (
+                    <TableRow key={index} onClick={this.showDetail}>
+                    {/* <TableCell>
+                      <Checkbox
+                      checked={this.state.checked.indexOf(index) !== -1}
+                      onClick={this.handleToggle(index)}
+                      />
+                      <Button variant="contained" color="primary">
+                        Help Me!
+                    </Button>
+                    </TableCell> */}
+                    <TableCell>{item.Id}</TableCell>
+                    <TableCell>{item.Package}</TableCell>
+                    <TableCell>{item.Place}</TableCell>
+                    {/* <TableCell numeric>{item.deadLine}</TableCell>
+                    <TableCell numeric>{item.Reward}</TableCell> */}
+                  </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>}
         </div>
+
+        <div style={{"height": "100px"}}></div>
 
         <Footer />
 
