@@ -23,26 +23,33 @@ const List = [
   "Package": "Computer", 
   "Place": "Bird",
   "deadLine": 3,
-  "Reward": 50
+  "Reward": 50,
+  "detail": "",
+  "image": "xxx.jpg" 
 }, 
   {"Id": "Flower", 
   "tag": 2, 
   "Package": "Game", 
   "Place": "Bird",
   "deadLine": 7,
-  "Reward": 500
+  "Reward": 500,
+  "detail": "",
+  "image": "xxx.jpg" 
 }, 
   {"Id": "Lee", 
   "tag": 3, 
   "Package": "Perfume", 
   "Place": "Tcat",
   "deadLine": 6,
-  "Reward": 0
+  "Reward": 0,
+  "detail": "",
+  "image": "xxx.jpg" 
 }]
 
 class App extends Component {
 
   state = {
+    detail: {},
     detailOpen: false
     // checked: []
   }
@@ -70,8 +77,9 @@ class App extends Component {
     })
   }
 
-  showDetail = () => {
+  showDetail = (index) => {
     this.setState({
+      detail: List[index],
       detailOpen: true
     })
   }
@@ -110,7 +118,7 @@ class App extends Component {
                 </TableHead>
                 <TableBody>
                   {List.map((item,index) => (
-                    <TableRow key={index} onClick={this.showDetail}>
+                    <TableRow key={index} onClick={this.showDetail.bind(this, index)}>
                     {/* <TableCell>
                       <Checkbox
                       checked={this.state.checked.indexOf(index) !== -1}
@@ -133,7 +141,7 @@ class App extends Component {
           </div>}
         </div>
 
-        <DetailDialog open={this.state.detailOpen} onClose={this.handleClose} scroll="paper" />
+        <DetailDialog open={this.state.detailOpen} onClose={this.handleClose} info={this.state.detail} scroll="paper" />
 
         <div style={{"height": "100px"}}></div>
 
