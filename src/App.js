@@ -10,36 +10,37 @@ import RequestBoard from './components/requestBoard'
 import PostDialog from './components/postDialog'
 import Footer from './components/footer'
 import Header from './components/header'
+import Login from './components/login'
 
 // const fetch = require('node-fetch')
 
 const List = [
   {"Id": "ttfish",
   "tag": 1, 
-  "Package": "Computer", 
-  "Place": "Bird",
+  "package": "Computer", 
+  "place": "Bird",
   "deadLine": 3,
-  "Reward": 50,
+  "reward": 50,
   "detail": "",
   "remark": "",
   "image": "xxx.jpg" 
 }, 
   {"Id": "Flower", 
   "tag": 2, 
-  "Package": "Game", 
-  "Place": "Bird",
+  "package": "Game", 
+  "place": "Bird",
   "deadLine": 7,
-  "Reward": 500,
+  "reward": 500,
   "detail": "",
   "remark": "",
   "image": "xxx.jpg" 
 }, 
   {"Id": "Lee", 
   "tag": 3, 
-  "Package": "Perfume", 
-  "Place": "Tcat",
+  "package": "Perfume", 
+  "place": "Tcat",
   "deadLine": 6,
-  "Reward": 0,
+  "reward": 0,
   "detail": "",
   "remark": "",
   "image": "xxx.jpg" 
@@ -82,9 +83,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
+       
         <Header />
-
+        <Login />
+      
         <div className='mainContent'>
 
           <div className="dashBoard"></div>
@@ -103,6 +105,7 @@ class App extends Component {
         </div>
 
         <DetailDialog open={this.state.detailOpen} onClose={this.dialogClose} info={this.state.detail} scroll="paper" />
+        
         <PostDialog open={this.state.postOpen} onClose={this.dialogClose} scroll="paper" />
         <div style={{"height": "100px"}}></div>
 
