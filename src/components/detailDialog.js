@@ -1,23 +1,20 @@
 import React from 'react'
+
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
-// import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 
 class detailDialog extends React.Component{
-    constructor(props){
-        super(props)
-
-        this.state = {
-            open: false
-        }
+    
+    state = {
+        open: false,
+        name: '',
     }
 
     handleClose = () => {
-        console.log(this.props)
         this.props.onClose()
-      }    
+    }    
 
     render(){
         return(
@@ -26,8 +23,7 @@ class detailDialog extends React.Component{
                         <DialogTitle id="detailDialogTitle">Detailed Information</DialogTitle>
                         {/* <b>绝密!!</b> */}
                         <div>
-
-
+                        
                         </div>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">

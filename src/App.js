@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
+import Sweet from 'sweetalert'
+
 import Button from '@material-ui/core/Button'
 
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
-
-// import Checkbox from '@material-ui/core/Checkbox'
-
 import './App.css'
-import DetailDialog from './detailDialog'
-import Footer from './footer'
-import Header from './header'
+
+import DetailDialog from './components/detailDialog'
+import RequestBoard from './components/requestBoard'
+import PostDialog from './components/postDialog'
+import Footer from './components/footer'
+import Header from './components/header'
 
 // const fetch = require('node-fetch')
 
@@ -25,6 +21,7 @@ const List = [
   "deadLine": 3,
   "Reward": 50,
   "detail": "",
+  "remark": "",
   "image": "xxx.jpg" 
 }, 
   {"Id": "Flower", 
@@ -34,6 +31,7 @@ const List = [
   "deadLine": 7,
   "Reward": 500,
   "detail": "",
+  "remark": "",
   "image": "xxx.jpg" 
 }, 
   {"Id": "Lee", 
@@ -43,6 +41,7 @@ const List = [
   "deadLine": 6,
   "Reward": 0,
   "detail": "",
+  "remark": "",
   "image": "xxx.jpg" 
 }]
 
@@ -50,38 +49,34 @@ class App extends Component {
 
   state = {
     detail: {},
-    detailOpen: false
-    // checked: []
+    detailOpen: false,
+    postOpen: false
   }
 
-  // handleToggle = value => () => {
-  //   const { checked } = this.state
-  //   const currentIndex = checked.indexOf(value)
-  //   const newChecked = [...checked]
+  // control all 2 dialogs
 
-  //   if (currentIndex === -1) {
-  //     newChecked.push(value);
-  //   } else {
-  //     newChecked.splice(currentIndex, 1)
-  //   }
-
-  //   this.setState({
-  //     checked: newChecked
-  //   })
-
-  // }
-
-  handleClose = () => {
+  dialogClose = () => {
     this.setState({
+      postOpen: false,
       detailOpen: false
     })
   }
 
-  showDetail = (index) => {
+  showDetailDialog = (index) => {
     this.setState({
       detail: List[index],
       detailOpen: true
     })
+  }
+
+  showPostDialog = () => {
+    this.setState({
+      postOpen: true
+    })
+  }
+
+  showGuide = () => {
+    Sweet('Guide to use', 'Select a order to view and just help~~', 'info')
   }
 
   render() {
@@ -95,55 +90,25 @@ class App extends Component {
           <div className="dashBoard"></div>
 
           <div className="choose">
-            <Button variant="contained" color="primary">
+            <Button variant="contained" size="large" href ="#requests" color="primary" onClick={this.showGuide}>
               I Can Help!
             </Button>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" size="large" color="primary" onClick={this.showPostDialog}>
               Help Me!
             </Button>
           </div>
 
-          {<div className="requests">
-            <Paper className="requestPaper">
-              <Table className="requestTable">
-                <TableHead>
-                  <TableRow>
-                    {/* <TableCell>Assistance</TableCell> */}
-                    <TableCell>QSC ID</TableCell>
-                    <TableCell>Package Type</TableCell>
-                    <TableCell>Place</TableCell>
-                    {/* <TableCell>Deadline</TableCell>
-                    <TableCell>Reward</TableCell> */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {List.map((item,index) => (
-                    <TableRow key={index} onClick={this.showDetail.bind(this, index)}>
-                    {/* <TableCell>
-                      <Checkbox
-                      checked={this.state.checked.indexOf(index) !== -1}
-                      onClick={this.handleToggle(index)}
-                      />
-                      <Button variant="contained" color="primary">
-                        Help Me!
-                    </Button>
-                    </TableCell> */}
-                    <TableCell>{item.Id}</TableCell>
-                    <TableCell>{item.Package}</TableCell>
-                    <TableCell>{item.Place}</TableCell>
-                    {/* <TableCell numeric>{item.deadLine}</TableCell>
-                    <TableCell numeric>{item.Reward}</TableCell> */}
-                  </TableRow>
-                      ))}
-                </TableBody>
-              </Table>
-            </Paper>
-          </div>}
+          <RequestBoard list={List} showDetailDialog={this.showDetailDialog}/>
+ 
         </div>
 
-        <DetailDialog open={this.state.detailOpen} onClose={this.handleClose} info={this.state.detail} scroll="paper" />
-
+        <DetailDialog open={this.state.detailOpen} onClose={this.dialogClose} info={this.state.detail} scroll="paper" />
+        <PostDialog open={this.state.postOpen} onClose={this.dialogClose} scroll="paper" />
         <div style={{"height": "100px"}}></div>
+
+        <div className="myStatus">
+        
+        </div>
 
         <Footer />
 
