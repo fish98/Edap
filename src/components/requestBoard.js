@@ -15,7 +15,7 @@ class RequestBoard extends React.Component{
                 <Table className="requestTable">
                     <TableHead>
                         <TableRow>
-                            <TableCell>QSC ID</TableCell>
+                            <TableCell>QSC Id</TableCell>
                             <TableCell>Package Type</TableCell>
                             <TableCell>Place</TableCell>
                         </TableRow>
@@ -23,7 +23,7 @@ class RequestBoard extends React.Component{
                     <TableBody>
                     {this.props.list.map((item,index) => (
                         <TableRow key={index} onClick={this.props.showDetailDialog.bind(this, index)}>
-                        <TableCell>{item.Id}</TableCell>
+                        <TableCell>{item.id}</TableCell>
                         <TableCell>{item.package}</TableCell>
                         <TableCell>{item.place}</TableCell>
                     </TableRow>

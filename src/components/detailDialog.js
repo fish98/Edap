@@ -33,9 +33,9 @@ class detailDialog extends React.Component{
                                 <TextField
                                     margin="dense"
                                     disabled
-                                    id="Id"
-                                    label="ID"
-                                    value={this.props.info.Id}
+                                    id="id"
+                                    label="id"
+                                    value={this.props.info.id}
                                     fullWidth
                                     />
                                 <TextField
@@ -57,7 +57,7 @@ class detailDialog extends React.Component{
                                 <TextField
                                     margin="dense"
                                     disabled
-                                    id="deadLine"
+                                    id="deadline"
                                     label="The deadline for package"
                                     value={this.props.info.deadline}
                                     fullWidth

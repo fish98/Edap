@@ -35,18 +35,18 @@ class PostDialog extends React.Component{
         return(
             <div className="postDialog">
                 <Dialog open={this.props.open} onClose={this.handleClose} scroll="paper">
-                    <DialogTitle id="detailDialogTitle">I need help from the TIDE</DialogTitle>
+                    <DialogTitle id="detailDialogTitle">I need help from the TidE</DialogTitle>
                     <div>
                         <DialogContent>
                             <DialogContentText>
-                            To gain help from others. please fill in the blanks and do not forget the image of your school ID card  
+                            To gain help from others. please fill in the blanks and do not forget the image of your school id card  
                             </DialogContentText>
 
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="Id"
-                                label="ID"
+                                id="id"
+                                label="id"
                                 // value={this}
                                 onChange={this.handleChange('id')}
                                 fullWidth
