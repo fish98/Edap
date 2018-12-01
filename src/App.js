@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Sweet from 'sweetalert'
+import fetch from 'isomorphic-fetch'
 
 import Button from '@material-ui/core/Button'
 
@@ -12,39 +13,47 @@ import Footer from './components/footer'
 import Header from './components/header'
 import Login from './components/login'
 
-// const fetch = require('node-fetch')
+// import config from './config'
+const url = 'http://172.20.218.224:8102/all'
 
-const List = [
-  {"id": "ttfish",
-  "tag": 1, 
-  "package": "Computer", 
-  "place": "Bird",
-  "deadline": 3,
-  "reward": 50,
-  "detail": "",
-  "remark": "",
-  "image": "xxx.jpg" 
-}, 
-  {"id": "Flower", 
-  "tag": 2, 
-  "package": "Game", 
-  "place": "Bird",
-  "deadline": 7,
-  "reward": 500,
-  "detail": "",
-  "remark": "",
-  "image": "xxx.jpg" 
-}, 
-  {"id": "Lee", 
-  "tag": 3, 
-  "package": "Perfume", 
-  "place": "Tcat",
-  "deadline": 6,
-  "reward": 0,
-  "detail": "",
-  "remark": "",
-  "image": "xxx.jpg" 
-}]
+const option = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+    },
+  mode: 'cors' 
+}
+// const List = [
+//   {"id": "ttfish",
+//   "tag": 1, 
+//   "package": "Computer", 
+//   "place": "Bird",
+//   "deadline": 3,
+//   "reward": 50,
+//   "detail": "",
+//   "remark": "",
+//   "image": "xxx.jpg" 
+// }, 
+//   {"id": "Flower", 
+//   "tag": 2, 
+//   "package": "Game", 
+//   "place": "Bird",
+//   "deadline": 7,
+//   "reward": 500,
+//   "detail": "",
+//   "remark": "",
+//   "image": "xxx.jpg" 
+// }, 
+//   {"id": "Lee", 
+//   "tag": 3, 
+//   "package": "Perfume", 
+//   "place": "Tcat",
+//   "deadline": 6,
+//   "reward": 0,
+//   "detail": "",
+//   "remark": "",
+//   "image": "xxx.jpg" 
+// }]
 
 class App extends Component {
 
@@ -65,7 +74,7 @@ class App extends Component {
 
   showDetailDialog = (index) => {
     this.setState({
-      detail: List[index],
+      detail: this.List[index],
       detailOpen: true
     })
   }
@@ -80,10 +89,20 @@ class App extends Component {
     Sweet('Guide to use', 'Select a order to view and just help~~', 'info')
   }
 
+  getAllData = () =>{
+    fetch(url, option).then(data => {
+      console.log(data)
+    })
+  }
+
+  UNSAFE_componentWillMount(){
+    this.getAllData()
+  }
+
   render() {
     return (
       <div className="App">
-       
+
         <Header />
         <Login />
       
@@ -92,7 +111,7 @@ class App extends Component {
           <div className="dashBoard"></div>
 
           <div className="choose">
-            <Button variant="contained" size="large" href ="#requests" color="primary" onClick={this.showGuide}>
+            <Button variant="contained" size="large" href ="#requests" color="primary" onClick={this.getAllData}>
               I Can Help!
             </Button>
             <Button variant="contained" size="large" color="primary" onClick={this.showPostDialog}>
@@ -100,7 +119,7 @@ class App extends Component {
             </Button>
           </div>
 
-          <RequestBoard list={List} showDetailDialog={this.showDetailDialog}/>
+          {/* <RequestBoard list={this.List} showDetailDialog={this.showDetailDialog}/> */}
  
         </div>
 
