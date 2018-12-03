@@ -10,6 +10,12 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import TextField from '@material-ui/core/TextField'
 
 import Sweet from 'sweetalert'
+import fetch from 'isomorphic-fetch'
+import config from '../config'
+
+const option = {
+    method: 'POST'
+}
 
 class PostDialog extends React.Component{
 
@@ -26,8 +32,8 @@ class PostDialog extends React.Component{
     }
 
     submitForm = () => {
-        console.log(this.state)
-        this.props.onClose()
+        option.body = JSON.stringify(this.state)
+        fetch(`${config.url}/new`, option).then(res => res.text()).then(data => console.log(data))
         Sweet('Success', 'Submit Request Success!', 'success')
     }
 
@@ -99,6 +105,11 @@ class PostDialog extends React.Component{
                                 onChange={this.handleChange('remark')}
                                 fullWidth
                                 />
+                            {/* <label htmlFor="contained-button-file">
+                                <Button variant="contained" component="span">
+                                Upload
+                                </Button>
+                            </label> */}
                         </DialogContent>
                     </div>
 
