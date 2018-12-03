@@ -13,51 +13,18 @@ import Footer from './components/footer'
 import Header from './components/header'
 import Login from './components/login'
 
-// import config from './config'
-const url = 'http://172.20.218.224:8102/all'
+import config from './config'
 
 const option = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json'
-    },
-  mode: 'cors' 
+  method: 'GET'
 }
-// const List = [
-//   {"id": "ttfish",
-//   "tag": 1, 
-//   "package": "Computer", 
-//   "place": "Bird",
-//   "deadline": 3,
-//   "reward": 50,
-//   "detail": "",
-//   "remark": "",
-//   "image": "xxx.jpg" 
-// }, 
-//   {"id": "Flower", 
-//   "tag": 2, 
-//   "package": "Game", 
-//   "place": "Bird",
-//   "deadline": 7,
-//   "reward": 500,
-//   "detail": "",
-//   "remark": "",
-//   "image": "xxx.jpg" 
-// }, 
-//   {"id": "Lee", 
-//   "tag": 3, 
-//   "package": "Perfume", 
-//   "place": "Tcat",
-//   "deadline": 6,
-//   "reward": 0,
-//   "detail": "",
-//   "remark": "",
-//   "image": "xxx.jpg" 
-// }]
+
+const url = config.url
 
 class App extends Component {
 
   state = {
+    List: [],
     detail: {},
     detailOpen: false,
     postOpen: false
@@ -74,7 +41,7 @@ class App extends Component {
 
   showDetailDialog = (index) => {
     this.setState({
-      detail: this.List[index],
+      detail: this.state.List[index],
       detailOpen: true
     })
   }
@@ -90,9 +57,11 @@ class App extends Component {
   }
 
   getAllData = () =>{
-    fetch(url, option).then(data => {
-      console.log(data)
-    })
+    fetch(`${url}/all`, option).then(res => res.text()).then(
+      data => {
+        this.setState({List: JSON.parse(data)})
+      }
+    )
   }
 
   UNSAFE_componentWillMount(){
@@ -111,7 +80,7 @@ class App extends Component {
           <div className="dashBoard"></div>
 
           <div className="choose">
-            <Button variant="contained" size="large" href ="#requests" color="primary" onClick={this.getAllData}>
+            <Button variant="contained" size="large" href ="#requests" color="primary" onClick={this.showGuide}>
               I Can Help!
             </Button>
             <Button variant="contained" size="large" color="primary" onClick={this.showPostDialog}>
@@ -119,7 +88,7 @@ class App extends Component {
             </Button>
           </div>
 
-          {/* <RequestBoard list={this.List} showDetailDialog={this.showDetailDialog}/> */}
+          <RequestBoard list={this.state.List} showDetailDialog={this.showDetailDialog}/>
  
         </div>
 
