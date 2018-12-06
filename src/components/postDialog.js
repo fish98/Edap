@@ -35,6 +35,7 @@ class PostDialog extends React.Component{
         option.body = JSON.stringify(this.state)
         fetch(`${config.url}/new`, option).then(res => res.text()).then(data => console.log(data))
         Sweet('Success', 'Submit Request Success!', 'success')
+        this.handleClose()
     }
 
     render(){
