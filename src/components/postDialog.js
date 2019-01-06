@@ -106,17 +106,21 @@ class PostDialog extends React.Component{
                                 onChange={this.handleChange('remark')}
                                 fullWidth
                                 />
-                            {/* <label htmlFor="contained-button-file">
-                                <Button variant="contained" component="span">
-                                Upload
-                                </Button>
-                            </label> */}
+                            <Button
+                                variant="contained"
+                                component="label" 
+                                label='imageUpload'>
+                                Upload Image
+                                <input type="file"  
+                                onChange={e => console.log(e.target.files[0])}
+                                style={{ display: 'none', 'position': 'relative'}}/>
+                            </Button>
                         </DialogContent>
                     </div>
 
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                        算了 我自己去拿吧   
+                        I will take myself    
                         </Button>
                         <Button onClick={this.submitForm} color="primary">
                         Submit
