@@ -19,6 +19,8 @@ const option = {
   method: 'GET'
 }
 
+// config.url is backend url  
+
 const url = config.url
 
 class App extends Component {
