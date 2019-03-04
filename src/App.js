@@ -15,6 +15,8 @@ import Login from './components/login'
 
 import config from './config'
 
+const isLogin = false
+
 const option = {
   method: 'GET'
 }
@@ -68,6 +70,9 @@ class App extends Component {
 
   UNSAFE_componentWillMount(){
     this.getAllData()
+    // if(!isLogin){
+    //   window.location.href = ('https://passport.zjuqsc.com/login?type=new&redirect=')
+    // }
   }
 
   render() {
@@ -75,7 +80,7 @@ class App extends Component {
       <div className="App">
 
         <Header />
-        <Login />
+        {/* <Login /> */}
       
         <div className='mainContent'>
 
