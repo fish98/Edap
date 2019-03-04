@@ -13,7 +13,12 @@ import Footer from './components/footer'
 import Header from './components/header'
 import Login from './components/login'
 
-import config from './config'
+// import config from './config'
+/* Alert: config is set in App.js for Kohigashi Usage*/
+
+const config = {
+  'url': 'http://qdap.dev.zjuqsc.com:8102'
+}
 
 const isLogin = false
 
